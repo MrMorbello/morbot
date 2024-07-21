@@ -35,4 +35,9 @@ class Bot:
         async def precio_pase_fortnite(ctx, *args):
             await ctx.send(content=(self.api.precio_del_pase_fortnite(ctx, *args))['mensaje'])
 
+        @self.bot.command(aliases=['mc', 'mcserver', 'minecraft'])
+        async def minecraft_server_status(ctx, *args):
+            await ctx.send(content=(self.api.minecraft_server_status(ctx, *args))['mensaje'])
+
+
 Bot()

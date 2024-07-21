@@ -20,4 +20,22 @@ class Servicios:
             f += 1
         return float(t[i:f])
     
-# print(Servicios().precio_del_pase_fortnite())
+    def minecraft_server_status(self):
+        ip = 'morbe.live'
+        api_url = 'https://api.mcsrvstat.us/3/'
+        r = requests.get(f"{api_url}{ip}")
+        t = r.json()
+
+        if not r.ok:
+            return {'online':False, 'jugadores':['api_no_disponible']}
+        
+        online = t.get("online", False)
+        datos_de_jugadores = t.get("players", {})
+
+        jugadores = []
+        for jugador in datos_de_jugadores.get("list", []):
+            jugadores.append(jugador.get("name"))
+
+        return {'online':online, 'jugadores':jugadores}
+    
+# print(Servicios().minecraft_server_status())

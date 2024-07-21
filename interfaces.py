@@ -23,3 +23,13 @@ class InterfazDiscord:
         valor = self.servicios.precio_del_pase_fortnite()
         mensaje = f'${valor} + imp = ${valor * 1.6}'
         return self.respuesta_para(mensaje = mensaje)
+
+    def minecraft_server_status(self, ctx, *args):
+        data = self.servicios.minecraft_server_status()
+        mensaje = 'Servidor encendido' if data['online'] else 'Servidor apagado'
+        mensaje += f', {len(data["jugadores"])} jugadores:'
+        for jugador in data['jugadores']:
+            mensaje += f'\n    {jugador}'
+        
+        return self.respuesta_para(mensaje = mensaje)
+    
