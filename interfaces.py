@@ -27,7 +27,9 @@ class InterfazDiscord:
     def minecraft_server_status(self, ctx, *args):
         data = self.servicios.minecraft_server_status()
         mensaje = 'Servidor encendido' if data['online'] else 'Servidor apagado'
-        mensaje += f', {len(data["jugadores"])} jugadores:'
+
+        mensaje += f', {len(data["jugadores"])} online:'
+
         for jugador in data['jugadores']:
             mensaje += f'\n    {jugador}'
         
