@@ -35,3 +35,6 @@ class InterfazDiscord:
         
         return self.respuesta_para(mensaje = mensaje)
     
+    def mensajovich(self, ctx, *args):
+        mensaje = self.servicios.mensajovich()
+        return self.respuesta_para(mensaje = mensaje)

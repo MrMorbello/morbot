@@ -1,8 +1,24 @@
+import random
 import requests
+
+FRASES = [
+            'Buenardo',
+            'Polimardo',
+            'Buenardopolis',
+            'Ashee',
+            'Breo',
+            'Buenardo',
+            'Ndeeeeah',
+            'Na na na anasheeeee',
+            'Asheeeeeei',
+            'Pesuti',
+            'Pesuti le dijo'
+        ]
 
 class Servicios:
     def __init__(self):
-        self.url = ''
+        self.frases = FRASES
+        self.frases_usadas = set()
 
     def precio_del_dolar(self):
         url = 'https://dolarhoy.com/i/cotizaciones/dolar-blue'
@@ -37,5 +53,17 @@ class Servicios:
             jugadores.append(jugador.get("name"))
 
         return {'online':online, 'jugadores':jugadores}
+    
+    def mensajovich(self):
+        if len(self.frases) == len(self.frases_usadas):
+            self.frases_usadas = set()
+        
+        frase = random.choice(self.frases)
+        while frase in self.frases_usadas:
+            frase = random.choice(self.frases)
+
+        self.frases_usadas.add(frase)
+
+        return frase
     
 # print(Servicios().minecraft_server_status())

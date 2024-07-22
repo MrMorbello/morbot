@@ -39,5 +39,8 @@ class Bot:
         async def minecraft_server_status(ctx, *args):
             await ctx.send(content=(self.api.minecraft_server_status(ctx, *args))['mensaje'])
 
+        @self.bot.command(aliases=['ashee', 'asheee', 'buenardo', 'polimardo', 'pesuti', 'buenardopolis'])
+        async def mensajovich(ctx, *args):
+            await ctx.send(content=(self.api.mensajovich(ctx, *args))['mensaje'])
 
 Bot()
