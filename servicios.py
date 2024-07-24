@@ -18,7 +18,7 @@ FRASES = [
 class Servicios:
     def __init__(self):
         self.frases = FRASES
-        self.frases_usadas = set()
+        self.frases_usadas = 0
 
     def precio_del_dolar(self):
         url = 'https://dolarhoy.com/i/cotizaciones/dolar-blue'
@@ -55,14 +55,12 @@ class Servicios:
         return {'online':online, 'jugadores':jugadores}
     
     def mensajovich(self):
-        if len(self.frases) == len(self.frases_usadas):
-            self.frases_usadas = set()
         
-        frase = random.choice(self.frases)
-        while frase in self.frases_usadas:
-            frase = random.choice(self.frases)
+        frase = self.frases[self.frases_usadas]
 
-        self.frases_usadas.add(frase)
+        self.frases_usadas += 1
+        if self.frases_usadas == len(self.frases):
+            self.frases_usadas = 0
 
         return frase
     
