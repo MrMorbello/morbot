@@ -1,5 +1,6 @@
 import random
 import requests
+import os
 
 FRASES = [
             'Buenardo',
@@ -35,6 +36,16 @@ class Servicios:
         while t[f] != ',':
             f += 1
         return float(t[i:f])
+        
+    def mensajovich(self):
+        
+        frase = self.frases[self.frases_usadas]
+
+        self.frases_usadas += 1
+        if self.frases_usadas == len(self.frases):
+            self.frases_usadas = 0
+
+        return frase
     
     def minecraft_server_status(self):
         ip = 'morbe.live'
@@ -53,15 +64,15 @@ class Servicios:
             jugadores.append(jugador.get("name"))
 
         return {'online':online, 'jugadores':jugadores}
-    
-    def mensajovich(self):
+
+    def iniciar_minecraft_server(self):
+        server_online = self.minecraft_server_status()['online']
+
+        if server_online:
+            return 'El servidor ya está online'
         
-        frase = self.frases[self.frases_usadas]
-
-        self.frases_usadas += 1
-        if self.frases_usadas == len(self.frases):
-            self.frases_usadas = 0
-
-        return frase
+        os.system('/home/ubuntu/minecraft1v21/run.sh')
+        
+        return 'Iniciando servidor, por favor espera...'
     
-# print(Servicios().minecraft_server_status())
+# print(Servicios().iniciar_minecraft_server())

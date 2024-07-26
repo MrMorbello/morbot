@@ -35,6 +35,12 @@ class InterfazDiscord:
         
         return self.respuesta_para(mensaje = mensaje)
     
+    def iniciar_minecraft_server(self, ctx, *args):
+        resultado = self.servicios.iniciar_minecraft_server()
+        mensaje = f'{resultado}'
+        return self.respuesta_para(mensaje = mensaje)
+    
     def mensajovich(self, ctx, *args):
         mensaje = self.servicios.mensajovich()
         return self.respuesta_para(mensaje = mensaje)
+    
