@@ -1,4 +1,5 @@
 import random
+import time
 import requests
 import os
 
@@ -20,6 +21,8 @@ class Servicios:
     def __init__(self):
         self.frases = FRASES
         self.frases_usadas = 0
+
+        self.mc_server_online = True
 
     def precio_del_dolar(self):
         url = 'https://dolarhoy.com/i/cotizaciones/dolar-blue'
@@ -63,14 +66,19 @@ class Servicios:
         for jugador in datos_de_jugadores.get("list", []):
             jugadores.append(jugador.get("name"))
 
+        self.mc_server_online = online
+
         return {'online':online, 'jugadores':jugadores}
 
     def iniciar_minecraft_server(self):
-        server_online = self.minecraft_server_status()['online']
-
-        if server_online:
+        if self.minecraft_server_status()['online']:
             return 'El servidor ya está online'
         
+        self.mc_server_online = True
+        time.sleep(10)
+
+        if self.minecraft_server_status()['online']:
+            return 'El servidor ya está online'
         os.system('/home/ubuntu/minecraft1v21/run.sh')
         
         return 'Iniciando servidor, por favor espera...'
