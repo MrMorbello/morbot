@@ -21,8 +21,12 @@ class Servicios:
     def __init__(self):
         self.frases = FRASES
         self.frases_usadas = 0
-
         self.mc_server_online = True
+        self.inicializar_servidores()
+
+    def inicializar_servidores(self):
+        print(self.iniciar_files_server())
+        print(self.iniciar_minecraft_server())
 
     def precio_del_dolar(self):
         url = 'https://dolarhoy.com/i/cotizaciones/dolar-blue'
@@ -83,4 +87,11 @@ class Servicios:
         
         return 'Iniciando servidor, por favor espera...'
     
-# print(Servicios().iniciar_minecraft_server())
+    def iniciar_files_server(self):
+        if requests.get('https://files.morbe.live/').ok:
+            return 'El servidor de archivos ya está online'
+        
+        os.system('/home/ubuntu/morbot/ejecutar_files_server.sh')
+        return 'Iniciando servidor de archivos, por favor espera...'
+
+# print(Servicios().iniciar_files_server())

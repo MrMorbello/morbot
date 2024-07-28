@@ -47,4 +47,8 @@ class Bot:
         async def mensajovich(ctx, *args):
             await ctx.send(content=(self.api.mensajovich(ctx, *args))['mensaje'])
 
+        @self.bot.command(aliases=['files', 'files_server'])
+        async def iniciar_files_server(ctx, *args):
+            await ctx.send(content=(self.api.iniciar_files_server(ctx, *args))['mensaje'])
+
 Bot()

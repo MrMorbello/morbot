@@ -1,6 +1,7 @@
 from servicios import Servicios
 import discord
 
+
 class InterfazDiscord:
     def __init__(self):
         self.servicios = Servicios()
@@ -34,7 +35,7 @@ class InterfazDiscord:
             mensaje += f'\n    {jugador}'
         
         return self.respuesta_para(mensaje = mensaje)
-    
+
     def iniciar_minecraft_server(self, ctx, *args):
         resultado = self.servicios.iniciar_minecraft_server()
         mensaje = f'{resultado}'
@@ -42,5 +43,10 @@ class InterfazDiscord:
     
     def mensajovich(self, ctx, *args):
         mensaje = self.servicios.mensajovich()
+        return self.respuesta_para(mensaje = mensaje)
+    
+    def iniciar_files_server(self, ctx, *args):
+        resultado = self.servicios.iniciar_files_server()
+        mensaje = f'{resultado}'
         return self.respuesta_para(mensaje = mensaje)
     
