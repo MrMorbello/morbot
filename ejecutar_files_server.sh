@@ -1,2 +1,2 @@
 cd /home/ubuntu/server_archivos
-screen -dmS FilesServer python3 app.py
+screen -dmS FilesSv python3 app.py
