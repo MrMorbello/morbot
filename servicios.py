@@ -26,7 +26,7 @@ class Servicios:
 
     def inicializar_servidores(self):
         print(self.iniciar_files_server())
-        print(self.iniciar_minecraft_server())
+        # print(self.iniciar_minecraft_server()) # no lo quiero por ahora :)
 
     def precio_del_dolar(self):
         url = 'https://dolarhoy.com/i/cotizaciones/dolar-blue'
