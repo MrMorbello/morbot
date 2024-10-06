@@ -83,7 +83,7 @@ class Servicios:
 
         if self.minecraft_server_status()['online']:
             return 'El servidor ya está online'
-        os.system('/home/ubuntu/minecraft1v21/run.sh')
+        os.system('/home/ubuntu/morbot/start_mc.sh')
         
         return 'Iniciando servidor, por favor espera...'
     
